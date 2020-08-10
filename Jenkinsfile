@@ -7,7 +7,7 @@ pipeline {
     stage('CreateDockerFile'){
 	    steps {
 		echo "creating Dockerfile"
-		sh "echo 'FROM bryandollery/terraform-packer-aws-alpine' >> '/Dockerfile'"
+		sh "echo 'FROM bryandollery/terraform-packer-aws-alpine:latest' >> '/Dockerfile'"
 		sh "echo 'RUN echo aa > /Manifest.txt >> /Dockerfile'"   
 	}
 	}
