@@ -11,6 +11,8 @@ pipeline {
 //		sh 'echo "RUN echo \"<BuildNumber>\${BUILD_NUMBER}</BuildNumber>\" >> \"/Manifest.txt\"">> /Dockerfile'
 //		sh 'echo "RUN echo \"<DateTime>echo \$(date)</DateTime>\" >> \"/Manifest.txt\"" >> /Dockerfile'
 		sh 'echo "RUN echo aa > /Manifest.txt" > "/Dockerfile"'    
+		sh 'docker build --tag omar:\${BUILD_NUMBER /}'
+                echo "Done ${cat /Manifest.txt}"
 	}
 	}
    stage('BuildDockerfile') {
