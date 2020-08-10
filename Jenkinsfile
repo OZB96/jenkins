@@ -4,10 +4,7 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
-	stage('Build'){
-	
-	}
-	stage('CreateDockerFile'){
+    stage('CreateDockerFile'){
 	    steps {
 		sh 'echo "FROM bryandollery/terraform-packer-aws-alpine" > /Dockerfile'
 		sh 'echo "RUN echo  \"<BuilderName>Omar Bazaid</BuilderName>\" > \"/Manifest.txt\"" >> /Dockerfile'
@@ -15,7 +12,7 @@ pipeline {
 		sh 'echo "RUN echo \"<DateTime>echo \$(date)</DateTime>\" >> \"/Manifest.txt\"" >> /Dockerfile'
 	    }
 	}
-        stage('BuildDockerfile') {
+   stage('BuildDockerfile') {
             steps {
 		sh 'docker build --tag omar:\${BUILD_NUMBER /}'
                 echo "Done ${cat /Manifest.txt}"
