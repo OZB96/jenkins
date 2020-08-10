@@ -6,8 +6,10 @@ pipeline {
     stages {
     stage('CreateDockerFile'){
 	    steps {
-		writeFile file: '/Dockerfile', text: 'FROM bryandollery/terraform-packer-aws-alpine'
-		writeFile file: '/Dockerfile', text: 'RUN echo  "<BuilderName>Omar Bazaid</BuilderName>" >> /Manifest.txt'
+		script {
+			writeFile file: '/Dockerfile', text: 'FROM bryandollery/terraform-packer-aws-alpine'
+			writeFile file: '/Dockerfile', text: 'RUN echo  "<BuilderName>Omar Bazaid</BuilderName>" >> /Manifest.txt'
+		}
 	}
 
 	}
