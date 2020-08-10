@@ -8,13 +8,13 @@ pipeline {
 	    steps {
 		echo "creating Dockerfile"
 		sh "echo 'FROM bryandollery/terraform-packer-aws-alpine' >> '/Dockerfile'"
-	//	sh "echo 'RUN echo aa > /Manifest.txt >> /Dockerfile'"   
+		sh "echo 'RUN echo aa > /Manifest.txt >> /Dockerfile'"   
 	}
 	}
    stage('BuildDockerfile') {
             steps {
 		sh 'docker build --tag omar:\${BUILD_NUMBER /}'
-                echo "Done ${cat /Manifest.txt}"
+                //echo "Done ${cat /Manifest.txt}"
             }
         }
         }
