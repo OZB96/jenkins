@@ -1,23 +1,25 @@
 pipeline {
-    agent { docker { image "alpine:3.7" } }
+    agent { docker { image 'bryandollery/terraform-packer-aws-alpine' } }
     options {
         skipStagesAfterUnstable()
     }
     stages {
-        stage("BuildStaging") {
+	stage('Build'){
+	
+	}
+	stage('CreateDockerFile'){
+	    steps {
+		sh 'echo "FROM bryandollery/terraform-packer-aws-alpine" > /Dockerfile'
+		sh 'echo "RUN echo  \"<BuilderName>Omar Bazaid</BuilderName>\" > \"/Manifest.txt\"" >> /Dockerfile'
+		sh 'echo "RUN echo \"<BuildNumber>${BUILD_NUMBER}</BuildNumber>\" >> \"/Manifest.txt\"">> /Dockerfile'
+		sh 'echo "RUN echo \"<DateTime>echo $(date)</DateTime>\" >> \"/Manifest.txt\"" >> /Dockerfile'
+	    }
+	}
+        stage('BuildDockerfile') {
             steps {
-                echo "creating infra for staging"
+		sh 'docker build --tag omar:${BUILD_NUMBER /}'
+                echo "Done $(cat /Manifest.txt)"
             }
         }
-        stage("DeployStaging"){
-            steps {
-                echo "deploying application on staging environment"
-            }
         }
-        stage("ValidateStageDeployment") {
-            steps {
-                echo "validate deployment on staging"
-            }
-        }
-    }
 }
