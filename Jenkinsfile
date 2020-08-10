@@ -16,7 +16,6 @@ pipeline {
    stage('BuildDockerfile') {
             steps {
 		sh "docker build --tag omar:/${BUILD_NUMBER ./}"
-                // echo "Done ${cat /Manifest.txt}"
             }
         }
         }
