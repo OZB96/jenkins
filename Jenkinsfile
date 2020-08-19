@@ -15,5 +15,11 @@ pipeline {
 		echo "testing should be done here"
             }
         }
+   stage('deploying') {
+            steps {
+		echo "deploying should be here"
+            }
+        }
+ 
         }
 }
