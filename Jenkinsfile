@@ -1,24 +1,18 @@
 pipeline {
-    agent { docker { image 'bryandollery/alpine-docker' } }
+    agent any
     options {
         skipStagesAfterUnstable()
     }
     stages {
     stage('CreateDockerFile'){
 	    steps {
-		script {
-			writeFile file: '/Dockerfile', text: 'FROM bryandollery/alpine-docker'
-			writeFile file: '/Dockerfile', text: 'RUN echo  "<BuilderName>Omar Bazaid</BuilderName>" >> /Manifest.txt'
-			writeFile file: '/Dockerfile', text: 'RUN echo  "<BuildNumber>${BUILD_NUMBER}</BuildNumber>" >> /Manifest.txt'
-			writeFile file: '/Dockerfile', text: 'RUN echo  "<DateTime>$(date)</DateTime>" >> /Manifest.txt'
-			
+		echo "building program shoukd be done here"
 		}
 	}
 
-	}
-   stage('BuildDockerfile') {
+   stage('testing') {
             steps {
-		sh "docker build --tag omar:/${BUILD_NUMBER ./}"
+		echo "testing should be done here"
             }
         }
         }
